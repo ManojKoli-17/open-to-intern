@@ -82,7 +82,7 @@ const getCollege = async function (req, res) {
     let InternDetails = await InternModel.find({collegeId: clgId, isDeleted: false}).select({ _id: 1, name: 1, email: 1, mobile: 1 });
 
     if (InternDetails.length > 0) {
-      collegeData = {
+      let collegeData = {
         name: collegeDetails.name,
         fullName: collegeDetails.fullName,
         logoLink: collegeDetails.logoLink,
@@ -91,11 +91,11 @@ const getCollege = async function (req, res) {
       return res.status(200).send({ status: true, data: collegeData });
     } else {
       // res.status(404).send({status: false, msg:"Interns not found"});
-      return res.status(404).send({status: true, data: {...collegeDetails.toObject(),interests: "Interns not found"}});
+      return res.status(200).send({status: true, data: {...collegeDetails.toObject(),interests: "No interns are interested in this college"}});
     }
   } catch (err) {
     res.status(500).send({ status: false, msg: err.message });
-  }
+  } 
 };
 
 module.exports = { createCollege, getCollege };

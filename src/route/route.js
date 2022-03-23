@@ -4,9 +4,9 @@ const router = express.Router();
 const collegeController = require("../controllers/collegeController");
 const internController = require("../controllers/internController");
 
-router.post("/createCollege", collegeController.createCollege);
-router.get("/getCollege", collegeController.getCollege);
+router.post("/colleges", collegeController.createCollege);
+router.post("/interns", internController.createIntern);
 
-router.post("/createIntern", internController.createIntern);
+router.get("/collegeDetails", collegeController.getCollege);
 
 module.exports = router;
