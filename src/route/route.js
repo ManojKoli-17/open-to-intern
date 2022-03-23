@@ -1,24 +1,12 @@
-const express=require('express');
-const router=express.Router();
+const express = require("express");
+const router = express.Router();
 
-const authorController= require("../controllers/authorController")
-const blogController=require("../controllers/blogController")
+const collegeController = require("../controllers/collegeController");
+const internController = require("../controllers/internController");
 
-const authMiddleware=require("../middlewares/blogMiddleware")
+router.post("/createCollege", collegeController.createCollege);
+router.get("/getCollege", collegeController.getCollege);
 
-router.post('/createAuthors',authorController.createAuthors)
+router.post("/createIntern", internController.createIntern);
 
-router.post('/createBlogs',authMiddleware.mid1,blogController.createBlogs)
-router.get('/getBlogs',authMiddleware.mid1,blogController.getBlogs)
-
-router.put('/updatedBlog/:blogId',authMiddleware.mid1,blogController.updatedBlog)
-router.delete('/blogDeleted/:blogId',authMiddleware.mid1,blogController.deletedBlog)
-
-router.delete('/deleteByQuery',authMiddleware.mid1,blogController.deleteByQuery)
-
-router.post('/loginAuthor',authorController.loginAuthor)
-
-
-
-
-module.exports=router;
+module.exports = router;
